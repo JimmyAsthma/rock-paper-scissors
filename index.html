@@ -15,8 +15,17 @@ function playerPlay(){
 }
 
 function playRound(result){
+if( playerSelection === null || playerSelection === '')
+{
+  result = "You entered battle unarmed. You had no chance of winning.";
+}  
+//Cancel scenarios
+else if(playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors")
+{result = "The weapon you tried to grab wasn't available. It did not go well for you.";
+ 
+}  
 //Player chooses rock scenarios
-if(playerSelection == "rock" && playerSelection != computerSelection)
+else if(playerSelection == "rock" && playerSelection != computerSelection)
 {
 if(computerSelection == "paper"){result = "You Lose! Paper beats Rock"}
   else{result = "You Win! Rock beats Scissors";}
@@ -52,7 +61,11 @@ const result = playRound();
 
 
 console.log(playRound(result));
-console.log(`You chose: ${playerSelection}\nComputer chose: ${computerSelection}`);
+if(result.includes("unarmed"))
+{console.log(`You chose: Nothing. Nothing at all.\nComputer chose: ${computerSelection}`);}
+else if(result.includes("weapon"))
+{console.log(`You chose: a weapon that did not exist.\nComputer chose: ${computerSelection}`);}
+else{console.log(`You chose: ${playerSelection}\nComputer chose: ${computerSelection}`);}
 
 
 </script>
