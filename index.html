@@ -1,1 +1,50 @@
-<script></script>
+<html>
+<body>
+    
+
+<script>
+   
+function computerPlay(){
+    const computerWeapon = ["rock", "paper", "scissors"];
+    const computerChosen = computerWeapon[Math.floor(Math.random() * computerWeapon.length)];
+    return computerChosen; 
+}
+const computerChoice = computerPlay();
+const playerAsk = prompt("Pick a weapon: rock, paper, scissors");
+const playerChoice = playerAsk;
+let result = "";
+
+
+//Player chooses rock scenarios
+if(playerChoice == "rock" && playerChoice != computerChoice)
+{
+if(computerChoice == "paper"){result = "You Lose! Paper beats Rock"}
+  else{result = "You Win! Rock beats Scissors";}
+
+}
+
+//Player chooses paper scenarios
+else if(playerChoice == "paper" && playerChoice != computerChoice)
+{
+if(computerChoice == "scissors"){result = "You Lose! Scissors beat Paper"}
+  else{result = "You Win! Paper beats Rock";}
+
+}
+
+//Player chooses scissors scenarios
+else if(playerChoice == "scissors" && playerChoice != computerChoice)
+{
+if(computerChoice == "rock"){result = "You Lose! Rock beats Scissors"}
+  else{result = "You Win! Scissors beats Paper";}
+    
+}
+
+//draw scenario
+else{result = `Draw!`;}
+
+console.log(`You chose: ${playerChoice}\nComputer chose: ${computerChoice}\nMatch result: ${result}`);
+
+
+</script>
+</body>
+</html>
