@@ -7,23 +7,7 @@
     </style>
   </head>
 <body>
- <div>
-   <div><h1>Game</h1></div>
-        <p>Your Weapon of choice: <span id="playerChoice"></span></p>
-        <p>Computer Weapon of choice: <span id="computerChoice"></span></p>
-        <p>Match Result: <span id="matchResult"></span></p>
-        
-</div>
-<div><h1>scoreboard</h1></div>
-<div>
-  <p id="competitionResult"></p>
-  <p>your score: <span id="humanScore"></span></p>
-  <p>Computer's score: <span id="computerScore"></span></p>
-</div>
- </div>   
-
 <script>
-document.addEventListener("DOMContentLoaded", function(event){
 let i = 0;
 let humanTally = 0;
 let computerTally = 0;
@@ -119,13 +103,25 @@ else{
     document.getElementById("humanScore").innerHTML = humanTally;
     document.getElementById("computerScore").innerHTML = computerTally;
 }
-//explain();
+function startGame(){
+
  while(humanTally < 3 && computerTally < 3){
    computerPlay();
    playerPlay();
    playRound();
    explain();
    }
+  }
+function clearGame(){
+  humanTally = 0;
+  computerTally = 0;
+  document.getElementById("playerChoice").innerHTML = "";
+  document.getElementById("computerChoice").innerHTML = "";
+  document.getElementById("matchResult").innerHTML = "";
+  document.getElementById("competitionResult").innerHTML = "";
+  document.getElementById("humanScore").innerHTML = 0;
+  document.getElementById("computerScore").innerHTML = 0;
+}
 //Announce Winner
   if(humanTally == 3){
     document.getElementById("competitionResult").innerHTML = "You won the game Partner!";
@@ -133,7 +129,23 @@ else{
   else if(computerTally == 3){
     document.getElementById("competitionResult").innerHTML = "A sad day for all of us when computers win.";
   }
-});
+
+
 </script>
+
+<div>
+  <div><button id="start" onclick="startGame()">Start Game</button><span>&nbsp;&nbsp;&nbsp;</span><button id="start" onclick="clearGame()">Reset</button></div>
+       <p>Your Weapon of choice: <span id="playerChoice"></span></p>
+       <p>Computer Weapon of choice: <span id="computerChoice"></span></p>
+       <p>Match Result: <span id="matchResult"></span></p>
+       
+</div>
+<div><h1>scoreboard</h1></div>
+<div>
+ <p id="competitionResult"></p>
+ <p>your score: <span id="humanScore">0</span></p>
+ <p>Computer's score: <span id="computerScore">0</span></p>
+</div>
+</div>  
 </body>
 </html>
