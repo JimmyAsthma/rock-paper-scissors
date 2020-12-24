@@ -96,32 +96,23 @@ else{result = `Draw!`;}
 return result;
 
 }
-//points function
-function points(humanTally, computerTally){
-  return `Your points: ${humanTally}\nComputer's points: ${computerTally}`;
-}
 //Explain what happened function
 function explain(){
   document.getElementById("matchResult").innerHTML = result;
-  //console.log(result);
 if(result.includes("unarmed")){
   document.getElementById("playerChoice").innerHTML = "Nothing. Nothing at all.";
   document.getElementById("computerChoice").innerHTML = computerSelection;
-  //console.log(`You chose: Nothing. Nothing at all.\nComputer chose: ${computerSelection}`);
 }
 else if(result.includes("weapon")){
   document.getElementById("playerChoice").innerHTML = "a weapon that did not exist.";
   document.getElementById("computerChoice").innerHTML = computerSelection;
-  //console.log(`You chose: a weapon that did not exist.\nComputer chose: ${computerSelection}`);
 }
 else{
   document.getElementById("playerChoice").innerHTML = playerSelection;
   document.getElementById("computerChoice").innerHTML = computerSelection;
-  //console.log(`You chose: ${playerSelection}\nComputer chose: ${computerSelection}`);
 }
     document.getElementById("humanScore").innerHTML = humanTally;
     document.getElementById("computerScore").innerHTML = computerTally;
-  //console.log(points(humanTally, computerTally));
 }
 //explain();
  while(humanTally < 3 && computerTally < 3){
@@ -133,11 +124,9 @@ else{
 //Announce Winner
   if(humanTally == 3){
     document.getElementById("competitionResult").innerHTML = "You won the game Partner!";
-    //console.log ("You won the game Partner!");
   }
   else if(computerTally == 3){
     document.getElementById("competitionResult").innerHTML = "A sad day for all of us when computers win.";
-    //console.log("A sad day for all of us when computers win.");
   }
   
 </script>
