@@ -39,6 +39,11 @@ function computerPlay(){
 //function for player to choose a weapon
 function playerPlay(){
   playerSelection = prompt("Pick a weapon: rock, paper, scissors");
+  if(playerSelection === null){
+    playerSelection = playerSelection;
+  }
+  else{
+  playerSelection = playerSelection.toLowerCase();}
   return playerSelection;
 }
 
@@ -101,15 +106,15 @@ function explain(){
   document.getElementById("matchResult").innerHTML = result;
 if(result.includes("unarmed")){
   document.getElementById("playerChoice").innerHTML = "Nothing. Nothing at all.";
-  document.getElementById("computerChoice").innerHTML = computerSelection;
+  document.getElementById("computerChoice").innerHTML = computerSelection[0].toUpperCase() + computerSelection.substr(1);
 }
 else if(result.includes("weapon")){
   document.getElementById("playerChoice").innerHTML = "a weapon that did not exist.";
-  document.getElementById("computerChoice").innerHTML = computerSelection;
+  document.getElementById("computerChoice").innerHTML = computerSelection[0].toUpperCase() + computerSelection.substr(1);
 }
 else{
-  document.getElementById("playerChoice").innerHTML = playerSelection;
-  document.getElementById("computerChoice").innerHTML = computerSelection;
+  document.getElementById("playerChoice").innerHTML = playerSelection[0].toUpperCase() + playerSelection.substr(1);
+  document.getElementById("computerChoice").innerHTML = computerSelection[0].toUpperCase() + computerSelection.substr(1);
 }
     document.getElementById("humanScore").innerHTML = humanTally;
     document.getElementById("computerScore").innerHTML = computerTally;
