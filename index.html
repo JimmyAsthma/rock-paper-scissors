@@ -1,50 +1,93 @@
 <html>
+  <head>
+    <style>
+    div {
+      border: 1px solid green;
+    }
+    </style>
+  </head>
 <body>
-    
+ <div>
+   <div><h1>Game</h1></div>
+        <p>Your Weapon of choice: <span id="playerChoice"></span></p>
+        <p>Computer Weapon of choice: <span id="computerChoice"></span></p>
+        <p>Match Result: <span id="matchResult"></span></p>
+        
+</div>
+<div><h1>scoreboard</h1></div>
+<div>
+  <p id="competitionResult"></p>
+  <p>your score: <span id="humanScore"></span></p>
+  <p>Computer's score: <span id="computerScore"></span></p>
+</div>
+ </div>   
 
 <script>
-   
+
+let i = 0;
+let humanTally = 0;
+let computerTally = 0;
+let result = '';
+let playerSelection = '';
+let computerSelection = '';
+//function for computer to choose a weapon
 function computerPlay(){
     const computerWeapon = ["rock", "paper", "scissors"];
-    const computerChosen = computerWeapon[Math.floor(Math.random() * computerWeapon.length)];
-    return computerChosen; 
+    computerSelection = computerWeapon[Math.floor(Math.random() * computerWeapon.length)];
+    return computerSelection;
 }
+//function for player to choose a weapon
 function playerPlay(){
-  const playerChosen = prompt("Pick a weapon: rock, paper, scissors");
-  return playerChosen;
+  playerSelection = prompt("Pick a weapon: rock, paper, scissors");
+  return playerSelection;
 }
 
-function playRound(result){
+//function to compare play vs computer rolls
+function playRound(){
 if( playerSelection === null || playerSelection === '')
 {
   result = "You entered battle unarmed. You had no chance of winning.";
+  computerTally++;
 }  
 //Cancel scenarios
 else if(playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors")
-{result = "The weapon you tried to grab wasn't available. It did not go well for you.";
+{
+  result = "The weapon you tried to grab wasn't available. It did not go well for you.";
+  computerTally++;
  
 }  
 //Player chooses rock scenarios
 else if(playerSelection == "rock" && playerSelection != computerSelection)
 {
-if(computerSelection == "paper"){result = "You Lose! Paper beats Rock"}
-  else{result = "You Win! Rock beats Scissors";}
+  if(computerSelection == "paper"){
+    result = "You Lose! Paper beats Rock"
+    computerTally++;}
+  else{
+    result = "You Win! Rock beats Scissors";
+    humanTally++;}
 
 }
 
 //Player chooses paper scenarios
 else if(playerSelection == "paper" && playerSelection != computerSelection)
 {
-if(computerSelection == "scissors"){result = "You Lose! Scissors beat Paper"}
-  else{result = "You Win! Paper beats Rock";}
+if(computerSelection == "scissors"){
+  result = "You Lose! Scissors beat Paper"
+  computerTally++;}
+  else{result = "You Win! Paper beats Rock";
+  humanTally++;}
 
 }
 
 //Player chooses scissors scenarios
 else if(playerSelection == "scissors" && playerSelection != computerSelection)
 {
-if(computerSelection == "rock"){result = "You Lose! Rock beats Scissors"}
-  else{result = "You Win! Scissors beats Paper";}
+if(computerSelection == "rock"){
+  result = "You Lose! Rock beats Scissors"
+  computerTally++;}
+  else{
+    result = "You Win! Scissors beats Paper";
+    humanTally++;}
     
 }
 
@@ -53,21 +96,50 @@ else{result = `Draw!`;}
 return result;
 
 }
-
-const computerSelection = computerPlay();
-const playerSelection = playerPlay();
-const result = playRound();
-
-
-
-console.log(playRound(result));
-if(result.includes("unarmed"))
-{console.log(`You chose: Nothing. Nothing at all.\nComputer chose: ${computerSelection}`);}
-else if(result.includes("weapon"))
-{console.log(`You chose: a weapon that did not exist.\nComputer chose: ${computerSelection}`);}
-else{console.log(`You chose: ${playerSelection}\nComputer chose: ${computerSelection}`);}
-
-
+//points function
+function points(humanTally, computerTally){
+  return `Your points: ${humanTally}\nComputer's points: ${computerTally}`;
+}
+//Explain what happened function
+function explain(){
+  document.getElementById("matchResult").innerHTML = result;
+  //console.log(result);
+if(result.includes("unarmed")){
+  document.getElementById("playerChoice").innerHTML = "Nothing. Nothing at all.";
+  document.getElementById("computerChoice").innerHTML = computerSelection;
+  //console.log(`You chose: Nothing. Nothing at all.\nComputer chose: ${computerSelection}`);
+}
+else if(result.includes("weapon")){
+  document.getElementById("playerChoice").innerHTML = "a weapon that did not exist.";
+  document.getElementById("computerChoice").innerHTML = computerSelection;
+  //console.log(`You chose: a weapon that did not exist.\nComputer chose: ${computerSelection}`);
+}
+else{
+  document.getElementById("playerChoice").innerHTML = playerSelection;
+  document.getElementById("computerChoice").innerHTML = computerSelection;
+  //console.log(`You chose: ${playerSelection}\nComputer chose: ${computerSelection}`);
+}
+    document.getElementById("humanScore").innerHTML = humanTally;
+    document.getElementById("computerScore").innerHTML = computerTally;
+  //console.log(points(humanTally, computerTally));
+}
+//explain();
+ while(humanTally < 3 && computerTally < 3){
+   computerPlay();
+   playerPlay();
+   playRound();
+   explain();
+   }
+//Announce Winner
+  if(humanTally == 3){
+    document.getElementById("competitionResult").innerHTML = "You won the game Partner!";
+    //console.log ("You won the game Partner!");
+  }
+  else if(computerTally == 3){
+    document.getElementById("competitionResult").innerHTML = "A sad day for all of us when computers win.";
+    //console.log("A sad day for all of us when computers win.");
+  }
+  
 </script>
 </body>
 </html>
