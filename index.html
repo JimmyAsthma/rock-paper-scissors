@@ -103,15 +103,18 @@ else{
     document.getElementById("humanScore").innerHTML = humanTally;
     document.getElementById("computerScore").innerHTML = computerTally;
 }
-function startGame(){
 
- while(humanTally < 3 && computerTally < 3){
+function startGame(){
+  if(humanTally < 3 && computerTally < 3){
    computerPlay();
    playerPlay();
    playRound();
    explain();
-   }
+   window.setTimeout(startGame, 100);
   }
+  else{}
+  }
+  
 function clearGame(){
   humanTally = 0;
   computerTally = 0;
